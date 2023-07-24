@@ -1,0 +1,13 @@
+# DENEME START
+
+@router.post("/decoded")
+def see_decoded_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
+                         db: db_dependency):
+    user = authenticate_user(form_data.username, form_data.password, db)
+    encode = {"sub": user.username, "id": user.id}
+    encode.update({"exp": "söz la 10 dk :)"})
+    return {"user": user, "encoded mi?": encode}
+
+
+# DENEME END — ÇALIŞTI LAN!
+
